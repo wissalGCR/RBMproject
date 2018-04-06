@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "133926530715",
+    "firebase_url": "https://rbmdatabase-6e499.firebaseio.com",
+    "project_id": "rbmdatabase-6e499",
+    "storage_bucket": "rbmdatabase-6e499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133926530715:android:149ffb71c6601637",
+        "android_client_info": {
+          "package_name": "com.example.wissal1.rbmapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133926530715-9q4154rnvr4oocfg4j9s4fbcmc7ghe0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wissal1.rbmapplication",
+            "certificate_hash": "9275804a9fe11f12560ff748e89438032297dbb9"
+          }
+        },
+        {
+          "client_id": "133926530715-9sn6jrao7jqn2rtlng43l1eg0d3r2f1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8O6hyKhVDHwUfUPmCG84FbwUMcsElPMc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133926530715-9sn6jrao7jqn2rtlng43l1eg0d3r2f1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
