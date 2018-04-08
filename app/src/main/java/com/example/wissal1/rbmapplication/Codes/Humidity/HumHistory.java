@@ -75,7 +75,8 @@ public class HumHistory extends AppCompatActivity {
             }
         });
 
-        HumidityList.addAll(db.getAllHumidity());
+        List<Humidity> b = db.getAllHumidity();
+        HumidityList.addAll(b);
         mAdapter = new HumidityAdapter(this, HumidityList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);

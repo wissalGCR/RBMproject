@@ -71,7 +71,8 @@ public class TempHistory extends AppCompatActivity {
             }
         });
 
-        temperaturesList.addAll(db.getAllTemperatures());
+        List<Temperature> a = db.getAllTemperatures();
+        temperaturesList.addAll(a);
         mAdapter = new TemperaturesAdapter(this, temperaturesList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);

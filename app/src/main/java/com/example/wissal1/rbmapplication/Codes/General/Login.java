@@ -15,27 +15,29 @@ import com.example.wissal1.rbmapplication.R;
 import info.hoang8f.widget.FButton;
 
 public class Login extends AppCompatActivity {
+    /*
     MabaseSqLite maBaseSQLite = new MabaseSqLite(this);
     private EditText txtEmailLogin;
     private EditText txtPwd;
     private FButton btn;
-    SQLiteDatabase bdd;
+    SQLiteDatabase bdd;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bdd = maBaseSQLite.getWritableDatabase();
         setContentView(R.layout.activity_login);
+        /*bdd = maBaseSQLite.getWritableDatabase();
+
         ContentValues values = new ContentValues();
         values.put("id", 1);
         values.put("email", "aaa@");
         values.put("username", "rbm");
         values.put("password", "123");
-        bdd.insert("user", null, values);
+        bdd.insert("user", null, values);*/
 
-        txtEmailLogin = (EditText) findViewById(R.id.user);
-        txtPwd = (EditText) findViewById(R.id.pass);
-        btn = (FButton) findViewById(R.id.login);
+        //EditText  txtEmailLogin = (EditText) findViewById(R.id.user);
+        //EditText  txtPwd = (EditText) findViewById(R.id.pass);
+       FButton  btn = (FButton) findViewById(R.id.login);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
