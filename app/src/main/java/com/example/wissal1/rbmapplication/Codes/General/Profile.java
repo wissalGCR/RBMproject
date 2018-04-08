@@ -1,10 +1,8 @@
-package com.example.wissal1.rbmapplication;
+package com.example.wissal1.rbmapplication.Codes.General;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,13 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.wissal1.rbmapplication.Codes.Humidity.HumHistory;
+import com.example.wissal1.rbmapplication.Codes.Roof.RoofHistory;
+import com.example.wissal1.rbmapplication.Codes.Temperature.TempHistory;
+import com.example.wissal1.rbmapplication.R;
 
 public class Profile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
    // final String username="";
-
+CardView TempCard,HumCard,RoofCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,10 +31,31 @@ public class Profile extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-      /*  if (savedInstanceState!= null) {
-            EditText tv = findViewById(R.id.tv);
-            tv.setText(savedInstanceState.getString(username));
-        }*/
+
+        TempCard = (CardView) findViewById(R.id.TempCard);
+        TempCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i1 =new Intent(Profile.this,TempHistory.class);
+                startActivity(i1);
+            }
+        });
+        HumCard = (CardView) findViewById(R.id.HumCard);
+        HumCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i2 =new Intent(Profile.this,HumHistory.class);
+                startActivity(i2);
+            }
+        });
+        RoofCard = (CardView) findViewById(R.id.RoofCard);
+        RoofCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i3 =new Intent(Profile.this,RoofHistory.class);
+                startActivity(i3);
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -88,19 +110,18 @@ public class Profile extends AppCompatActivity
 
         if (id == R.id.nav_send) {
             Intent i =new Intent(Profile.this,SendSMS.class);
-            startActivity(i);
-
-
-        } else if (id == R.id.nav_notification) {
-
-            Intent i =new Intent(Profile.this,ListNotif.class);
-            startActivity(i);
-
-        } else if (id == R.id.nav_smslist) {
+            startActivity(i);}
+           else if (id == R.id.nav_smslist) {
 
             Intent i =new Intent(Profile.this,MainActivity.class);
             startActivity(i);
-
+            if (id == R.id.nav_logout) {
+              /*  SharedPreferences preferences =getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+                finish();*/
+            }
 
         }
 
@@ -108,4 +129,14 @@ public class Profile extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    /*public void checkUser(){
+        Boolean Check = Boolean.valueOf(UtilsClipCodes.readSharedSetting(Profile.this, "ClipCodes", "true"));
+
+        Intent introIntent = new Intent(Profile.this, Login.class);
+        introIntent.putExtra("ClipCodes", Check);
+
+        if (Check) {
+            startActivity(introIntent);
+        }*/
+
 }

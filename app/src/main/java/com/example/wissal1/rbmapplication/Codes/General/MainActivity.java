@@ -1,16 +1,13 @@
-package com.example.wissal1.rbmapplication;
+package com.example.wissal1.rbmapplication.Codes.General;
 import java.util.ArrayList;
-import android.app.NotificationManager;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +19,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.example.wissal1.rbmapplication.database.MabaseSqLite;
+import com.example.wissal1.rbmapplication.R;
+
 import info.hoang8f.widget.FButton;
 
 public class MainActivity extends AppCompatActivity{
@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity{
     ArrayList<String> smsMessagesList = new ArrayList<String>();
     ListView smsListView;
     ArrayAdapter arrayAdapter;
-    public static final String RBM_NUMBER = "55555";
+    MabaseSqLite maBaseSQLite = new MabaseSqLite(this);
+    SQLiteDatabase bdd;
 
     public static MainActivity instance() {
         return inst;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity{
         int indexAddress = smsInboxCursor.getColumnIndex("address");
         if (indexBody < 0 || !smsInboxCursor.moveToFirst()) return;
         arrayAdapter.clear();
-        String sender= smsInboxCursor.getString(indexAddress);
+
 
 
         do {
@@ -87,6 +88,18 @@ public class MainActivity extends AppCompatActivity{
             arrayAdapter.add(str);
         } while (smsInboxCursor.moveToNext() );
     }
+  public void  insert(){
+       ContentResolver contentResolver = getContentResolver();
+       Cursor smsInboxCursor = contentResolver.query(Uri.parse("content://sms/inbox"), null, null, null, null);
+       int indexAddress = smsInboxCursor.getColumnIndex("address");
+      int indexBody = smsInboxCursor.getColumnIndex("body");
+      ContentValues values =new ContentValues();
+
+
+      values.put("number",smsInboxCursor.getString(indexBody));
+      values.put("msg",smsInboxCursor.getString(indexAddress));
+      bdd.insert("mysms",null,values);
+   }
 
     public void updateList(final String smsMessage) {
         arrayAdapter.insert(smsMessage, 0);

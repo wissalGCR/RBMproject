@@ -1,0 +1,101 @@
+package com.example.wissal1.rbmapplication.Codes.Temperature;
+import com.example.wissal1.rbmapplication.R;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.wissal1.rbmapplication.database.Temperature;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by WISSAL1 on 08/04/2018.
+ */
+
+public class TemperaturesAdapter extends RecyclerView.Adapter<TemperaturesAdapter.MyViewHolder>{
+    private Context context;
+    private List<Temperature> temperaturesList;
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView temperature;
+        public TextView dot;
+        public TextView date;
+        public TextView num ;
+
+        public MyViewHolder(View view) {
+            super(view);
+            temperature = view.findViewById(R.id.temperature);
+            dot = view.findViewById(R.id.dot);
+            date = view.findViewById(R.id.date);
+            num=view.findViewById(R.id.num);
+        }
+    }
+
+
+    public TemperaturesAdapter(Context context, List<Temperature> temperaturesList) {
+        this.context = context;
+        this.temperaturesList = temperaturesList;
+    }
+
+    @NonNull
+    @Override
+    public TemperaturesAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.temperature_list_row, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TemperaturesAdapter.MyViewHolder holder, int position) {
+        Temperature temperature = temperaturesList.get(position);
+
+        holder.temperature.setText(temperature.getValeurTemperature());
+
+        // Displaying dot from HTML character code
+        holder.dot.setText(Html.fromHtml("&#8226;"));
+
+        // Formatting and displaying date
+        holder.date.setText(formatDate(temperature.getDate()));
+
+        holder.num.setText(temperature.getNumruche());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return temperaturesList.size();
+    }
+
+    /**
+     * Formatting timestamp to `MMM d` format
+     * Input: 2018-02-21 00:15:42
+     * Output: Feb 21
+     */
+    private String formatDate(String dateStr) {
+        try {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = fmt.parse(dateStr);
+            SimpleDateFormat fmtOut = new SimpleDateFormat("MMM d HH:mm:ss");
+            return fmtOut.format(date);
+        } catch (ParseException e) {
+
+        }
+
+        return "";
+    }
+
+
+
+}
+
+

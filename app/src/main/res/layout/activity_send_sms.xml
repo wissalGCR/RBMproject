@@ -14,7 +14,7 @@
         android:layout_marginTop="100dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="5556" />
+        android:text="21102281" />
 
     <EditText
         android:id="@+id/msg"

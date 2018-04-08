@@ -1,4 +1,4 @@
-package com.example.wissal1.rbmapplication;
+package com.example.wissal1.rbmapplication.database;
 
 /**
  * Created by WISSAL1 on 03/04/2018.

@@ -1,15 +1,15 @@
-package com.example.wissal1.rbmapplication;
+package com.example.wissal1.rbmapplication.Codes.General;
 
-import android.*;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.wissal1.rbmapplication.R;
 
 import info.hoang8f.widget.FButton;
 
@@ -18,7 +18,7 @@ public class SendSMS extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_sms);
+        setContentView(com.example.wissal1.rbmapplication.R.layout.activity_send_sms);
         FButton btn;
          final EditText no,msg;
           if (ContextCompat.checkSelfPermission(SendSMS.this,

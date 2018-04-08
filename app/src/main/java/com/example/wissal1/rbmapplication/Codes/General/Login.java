@@ -1,17 +1,16 @@
-package com.example.wissal1.rbmapplication;
+package com.example.wissal1.rbmapplication.Codes.General;
 
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+
+import com.example.wissal1.rbmapplication.database.MabaseSqLite;
+import com.example.wissal1.rbmapplication.R;
 
 import info.hoang8f.widget.FButton;
 
@@ -21,17 +20,18 @@ public class Login extends AppCompatActivity {
     private EditText txtPwd;
     private FButton btn;
     SQLiteDatabase bdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         bdd =maBaseSQLite.getWritableDatabase();
+        bdd = maBaseSQLite.getWritableDatabase();
         setContentView(R.layout.activity_login);
-        ContentValues values =new ContentValues();
-        values.put("id",1);
-        values.put("email","aaa@");
-        values.put("username","rbm");
-        values.put("password","123");
-        bdd.insert("user",null,values);
+        ContentValues values = new ContentValues();
+        values.put("id", 1);
+        values.put("email", "aaa@");
+        values.put("username", "rbm");
+        values.put("password", "123");
+        bdd.insert("user", null, values);
 
         txtEmailLogin = (EditText) findViewById(R.id.user);
         txtPwd = (EditText) findViewById(R.id.pass);
@@ -40,8 +40,25 @@ public class Login extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent profileIntent = new Intent(Login.this,Profile.class);
+                startActivity(profileIntent);
 
-                Cursor cr=bdd.query("user",new String[]{"id","email","username","password"},null,null,null,null,null) ;
+            }
+        });
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+              /*  Cursor cr=bdd.query("user",new String[]{"id","email","username","password"},null,null,null,null,null) ;
                 cr.moveToFirst();
                 boolean test=false;
 
@@ -69,17 +86,7 @@ public class Login extends AppCompatActivity {
                 else{
                     Toast.makeText(Login.this,"vous n'avez pas le droit d'accés",Toast.LENGTH_LONG).show();
                 }
-            }
-        });
+            }*/
 
 
 
-            }
-
-
-
-
-
-
-
-}

@@ -71,4 +71,9 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="activity_title_home">Notes</string>
+    <string name="msg_no_notes">No temperature found!</string>
+    <string name="lbl_new_note_title">Send an SMS</string>
+    <string name="lbl_edit_note_title">Edit Note</string>
+    <string name="hint_enter_note">Enter phone number!</string>
 </resources>

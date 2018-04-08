@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bee"
-    tools:context="com.example.wissal1.rbmapplication.Login">
+    tools:context="com.example.wissal1.rbmapplication.Codes.General.Login">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
