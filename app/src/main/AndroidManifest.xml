@@ -39,7 +39,8 @@
         <activity android:name=".Codes.General.SendSMS" />
         <activity android:name=".Codes.Temperature.TempHistory" />
         <activity android:name=".Codes.Humidity.HumHistory" />
-        <activity android:name=".Codes.Roof.RoofHistory"></activity>
+        <activity android:name=".Codes.Roof.RoofHistory" />
+        <activity android:name=".Codes.Commands.Command"></activity>
     </application>
 
 </manifest>

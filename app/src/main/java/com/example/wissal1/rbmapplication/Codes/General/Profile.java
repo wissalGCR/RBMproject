@@ -13,15 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.wissal1.rbmapplication.Codes.Commands.Command;
 import com.example.wissal1.rbmapplication.Codes.Humidity.HumHistory;
-import com.example.wissal1.rbmapplication.Codes.Roof.RoofHistory;
+import com.example.wissal1.rbmapplication.Codes.Commands.Command;
 import com.example.wissal1.rbmapplication.Codes.Temperature.TempHistory;
 import com.example.wissal1.rbmapplication.R;
 
 public class Profile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
    // final String username="";
-CardView TempCard,HumCard,RoofCard;
+CardView TempCard,HumCard,CommandCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,11 +49,11 @@ CardView TempCard,HumCard,RoofCard;
                 startActivity(i2);
             }
         });
-        RoofCard = (CardView) findViewById(R.id.RoofCard);
-        RoofCard.setOnClickListener(new View.OnClickListener() {
+        CommandCard = (CardView) findViewById(R.id.CommandCard);
+        CommandCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i3 =new Intent(Profile.this,RoofHistory.class);
+                Intent i3 =new Intent(Profile.this,Command.class);
                 startActivity(i3);
             }
         });

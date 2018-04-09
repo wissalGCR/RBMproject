@@ -5,7 +5,7 @@ package com.example.wissal1.rbmapplication.database;
  */
 
 public class Roof {
-    public static final String TABLE_NAME = "humidity";
+    public static final String TABLE_NAME = "roof";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NUMRUCHE = "numruche";
     public static final String COLUMN_VALEURROOF = "valeurroof";

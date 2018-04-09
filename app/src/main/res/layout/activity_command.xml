@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/command"
+    android:gravity="right"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.example.wissal1.rbmapplication.Codes.Commands.Command">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Command "
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/heater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/roof"
+            android:layout_marginLeft="20dp"
+            android:layout_toLeftOf="@+id/textView2"
+            android:layout_toStartOf="@+id/textView2"
+            android:text="Heater"
+            android:textSize="30sp" />
+
+        <Switch
+            android:id="@+id/fan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/roof"
+            android:layout_alignRight="@+id/roof"
+            android:layout_below="@+id/heater"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Fan"
+            android:textSize="30sp" />
+
+        <Switch
+            android:id="@+id/lampe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fan"
+            android:layout_alignStart="@+id/fan"
+            android:layout_below="@+id/fan"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Lampe"
+            android:textSize="30sp" />
+
+        <Switch
+            android:id="@+id/roof"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearLayout3"
+            android:layout_alignStart="@+id/linearLayout3"
+            android:layout_below="@+id/textView2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Roof"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</RelativeLayout>

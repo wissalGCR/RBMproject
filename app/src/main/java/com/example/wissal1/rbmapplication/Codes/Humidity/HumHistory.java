@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wissal1.rbmapplication.Codes.General.SendSMS;
 import com.example.wissal1.rbmapplication.Codes.Temperature.TempHistory;
 import com.example.wissal1.rbmapplication.Codes.Temperature.TemperaturesAdapter;
 import com.example.wissal1.rbmapplication.R;
@@ -39,7 +40,7 @@ public class HumHistory extends AppCompatActivity {
     private static HumHistory inst;
     EditText input;
     Context context;
-
+    final static String RBM_NUMBER="21102281";
     SmsManager smsManager = SmsManager.getDefault();
     private static final int READ_SMS_PERMISSIONS_REQUEST = 1;
     EditText inputTemperature ;
@@ -83,9 +84,7 @@ public class HumHistory extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
-
-
-        toggleEmptyNotes();
+        //toggleEmptyNotes();
 
         /**
          * On long press on RecyclerView item, open alert dialog
@@ -175,10 +174,6 @@ public class HumHistory extends AppCompatActivity {
         builder.show();
     }
 
-    /**
-     * Deleting note from SQLite and removing the
-     * item from the list by its position
-     */
     private void deleteNote(int position) {
         // deleting the note from db
         db.deleteHumidity(HumidityList.get(position));
@@ -189,7 +184,9 @@ public class HumHistory extends AppCompatActivity {
 
         toggleEmptyNotes();
     }
+
     private void showHumidityDialog(final boolean shouldUpdate, final Humidity humidity, final int position) {
+
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
         View view = layoutInflaterAndroid.inflate(R.layout.humidity_dialog, null);
 
@@ -220,6 +217,10 @@ public class HumHistory extends AppCompatActivity {
         final AlertDialog alertDialog = alertDialogBuilderUserInput.create();
         alertDialog.show();
 
+
+
+
+    /***********************************************************************************************************************/
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,13 +230,19 @@ public class HumHistory extends AppCompatActivity {
                     return;
                 } else {
                     alertDialog.dismiss();
-                    smsManager.sendTextMessage(phonenumber.getText().toString(), null, "Humidity", null, null);
-                    Toast.makeText(HumHistory.this, "Message Sent!", Toast.LENGTH_SHORT).show();
+                    try{
+
+                        android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
+                        smsManager.sendTextMessage(RBM_NUMBER,null,"H%",null,null);
+                        Toast.makeText(HumHistory.this,"sms sent!",Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        Toast.makeText(HumHistory.this," Failed!",Toast.LENGTH_SHORT).show();
+                    }
 
                 } }
         });
     }
-
+    /**********************************************************************************************************************/
 
 
 

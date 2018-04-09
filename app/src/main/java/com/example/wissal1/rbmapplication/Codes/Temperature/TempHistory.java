@@ -1,4 +1,5 @@
 package com.example.wissal1.rbmapplication.Codes.Temperature;
+import com.example.wissal1.rbmapplication.Codes.Humidity.HumHistory;
 import com.example.wissal1.rbmapplication.R;
 import android.Manifest;
 import android.content.Context;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TempHistory extends AppCompatActivity {
+    final static String RBM_NUMBER="21102281";
     private static TempHistory inst;
     EditText input;
     Context context;
@@ -45,10 +47,9 @@ public class TempHistory extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView noTemperaturesView;
     private MabaseSqLite db;
-    public static TempHistory instance() {
-
+  /*  public static TempHistory instance() {
         return inst;
-    }
+    }*/
 
 
 
@@ -67,7 +68,7 @@ public class TempHistory extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTemperatureDialog(false, null, -1);
+                showTemperatureDialog(false, null, 1);
             }
         });
 
@@ -78,7 +79,6 @@ public class TempHistory extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
-
 
         toggleEmptyNotes();
 
@@ -224,63 +224,15 @@ public class TempHistory extends AppCompatActivity {
                     return;
                 } else {
                     alertDialog.dismiss();
-                    smsManager.sendTextMessage(phonenumber.getText().toString(), null, "Temperature", null, null);
-                    Toast.makeText(TempHistory.this, "Message Sent!", Toast.LENGTH_SHORT).show();
-                    /*Uri sentURI = Uri.parse("content://sms/inbox");
-                    String[] columns = new String[] { "_id" };
-                    Cursor c = context.getContentResolver().query(sentURI, columns, null, null, null);
-                    if(c == null){
-                        // error cannot access sms database
-                        return;
-                    }
-                    // if cursor (c) is not null you have access to sms database
-                    if(c.moveToLast()){
-                        int lastSMSid = c.getInt(0); // 0 is the index of selected column.
-                        // now you have the last sent sms id
-                        int deletedRows = context.getContentResolver().delete(sentURI, "_id=?", new String[]{Integer.toString(lastSMSid)});
-                        c.close(); // this is important
-                        // and now check deletedRows value
-                        if(deletedRows > 0){
-                            // you have removed sms successfully.
-                        }
+                    try{
 
-
-
-
+                        android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
+                        smsManager.sendTextMessage(RBM_NUMBER,null,"TC",null,null);
+                        Toast.makeText(TempHistory.this,"sms sent!",Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        Toast.makeText(TempHistory.this," Failed!",Toast.LENGTH_SHORT).show();
                     }
 
-                }
-
-
-                /*if (phonenumber !=null) {
-                    // send a sms
-
-                    if (ContextCompat.checkSelfPermission(Main3Activity.this, Manifest.permission.SEND_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        getPermissionToReadSMS();
-
-                    } else {
-                        smsManager.sendTextMessage(phonenumber.getText().toString(), null, input.getText().toString(), null, null);
-                        Toast.makeText(Main3Activity.this, "Message Sent!", Toast.LENGTH_SHORT).show();
-
-                        //SmsBroadcastReceiver smsBroadcastReceiver=null ;
-                        // smsBroadcastReceiver.abortBroadcast();
-                        // scheduleAlarm(view);
-
-
-
-                    }
-
-
-                }*/
-                    // check if user updating note
-                    /*if (shouldUpdate && temperature != null) {
-                        // update note by it's id
-                        updateTemperature(inputTemperature.getText().toString(), position);
-                    } else {
-                        // create new note
-                        createTemperature(inputTemperature.getText().toString(), inputTemperature.getText().toString());
-                    }*/
                 } }
         });
     }
