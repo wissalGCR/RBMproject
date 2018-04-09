@@ -71,8 +71,7 @@ public class TempHistory extends AppCompatActivity {
             }
         });
 
-        List<Temperature> a = db.getAllTemperatures();
-        temperaturesList.addAll(a);
+        temperaturesList.addAll(db.getAllTemperatures());
         mAdapter = new TemperaturesAdapter(this, temperaturesList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -98,8 +97,7 @@ public class TempHistory extends AppCompatActivity {
             public void onLongClick(View view, int position) {
                 showActionsDialog(position);
             }
-        }));
-    }
+        }));}
 
 
 
@@ -228,7 +226,61 @@ public class TempHistory extends AppCompatActivity {
                     alertDialog.dismiss();
                     smsManager.sendTextMessage(phonenumber.getText().toString(), null, "Temperature", null, null);
                     Toast.makeText(TempHistory.this, "Message Sent!", Toast.LENGTH_SHORT).show();
+                    /*Uri sentURI = Uri.parse("content://sms/inbox");
+                    String[] columns = new String[] { "_id" };
+                    Cursor c = context.getContentResolver().query(sentURI, columns, null, null, null);
+                    if(c == null){
+                        // error cannot access sms database
+                        return;
+                    }
+                    // if cursor (c) is not null you have access to sms database
+                    if(c.moveToLast()){
+                        int lastSMSid = c.getInt(0); // 0 is the index of selected column.
+                        // now you have the last sent sms id
+                        int deletedRows = context.getContentResolver().delete(sentURI, "_id=?", new String[]{Integer.toString(lastSMSid)});
+                        c.close(); // this is important
+                        // and now check deletedRows value
+                        if(deletedRows > 0){
+                            // you have removed sms successfully.
+                        }
 
+
+
+
+                    }
+
+                }
+
+
+                /*if (phonenumber !=null) {
+                    // send a sms
+
+                    if (ContextCompat.checkSelfPermission(Main3Activity.this, Manifest.permission.SEND_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        getPermissionToReadSMS();
+
+                    } else {
+                        smsManager.sendTextMessage(phonenumber.getText().toString(), null, input.getText().toString(), null, null);
+                        Toast.makeText(Main3Activity.this, "Message Sent!", Toast.LENGTH_SHORT).show();
+
+                        //SmsBroadcastReceiver smsBroadcastReceiver=null ;
+                        // smsBroadcastReceiver.abortBroadcast();
+                        // scheduleAlarm(view);
+
+
+
+                    }
+
+
+                }*/
+                    // check if user updating note
+                    /*if (shouldUpdate && temperature != null) {
+                        // update note by it's id
+                        updateTemperature(inputTemperature.getText().toString(), position);
+                    } else {
+                        // create new note
+                        createTemperature(inputTemperature.getText().toString(), inputTemperature.getText().toString());
+                    }*/
                 } }
         });
     }

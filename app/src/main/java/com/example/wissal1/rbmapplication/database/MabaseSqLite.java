@@ -100,8 +100,6 @@ import java.util.List;
 
         // Select All Query
         String selectQuery = "SELECT  * FROM " + Temperature.TABLE_NAME ;
-
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
